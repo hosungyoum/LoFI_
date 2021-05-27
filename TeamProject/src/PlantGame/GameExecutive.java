@@ -36,11 +36,13 @@ public class GameExecutive {
 		d.leftmoney(potPrice);
 		d.defaultMenuprint();
 		d.endCondition1();
+
+		// --------------------------------------
+
 		Fertilizer f = new Fertilizer();
 		f.FertilizerChoose();
 		int FertilizerNumber = sc.nextInt();
 		int FertilizerPrice = 0;
-		String Fertilizer = " ";
 		while (FertilizerNumber != 1 && FertilizerNumber != 2 && FertilizerNumber != 3 && FertilizerNumber != 4) {
 			System.out.println("식물을 키우기 위해서는 비료는 필수!!" + "\n 다시 입력해주세요.");
 			FertilizerNumber = sc.nextInt();
@@ -49,37 +51,108 @@ public class GameExecutive {
 		case 1:
 			StarFertilizer sf = new StarFertilizer();
 			System.out.println("별 비료를 선택하셨군요!!");
-			Fertilizer = sf.Fertilizer;
 			FertilizerPrice = sf.FertilizerPrice();
 			break;
 		case 2:
 			AtFertilizer af = new AtFertilizer();
 			System.out.println("골뱅이 비료를 선택하셨군요!!");
-			Fertilizer = af.Fertilizer;
 			FertilizerPrice = af.FertilizerPrice();
 			break;
 		case 3:
 			ShopFertilizer s2f = new ShopFertilizer();
 			System.out.println("우물 비료를 선택하셨군요!!");
-			Fertilizer = s2f.Fertilizer;
 			FertilizerPrice = s2f.FertilizerPrice();
 			break;
 		case 4:
 			AddFertilizer a2f = new AddFertilizer();
 			System.out.println("더하기 비료를 선택하셨군요!!");
-			Fertilizer = a2f.Fertilizer;
 			FertilizerPrice = a2f.FertilizerPrice();
 			break;
 		}
+
 		d.leftmoney(FertilizerPrice);
 		d.defaultMenuprint();
 		d.endCondition1();
-		// 씨앗구매 아직 구현안함.
+
+		// ---------------------------------------------------------
+
+		System.out.println(" ---------------------------------- ");
+
+		Seed c = new Seed();
+		c.SeedChoose();
+		int SeedNumber = sc.nextInt();
+		int SeedPrice = 0;
+		String Seed = " ";
+		while (SeedNumber != 1 && SeedNumber != 2 && SeedNumber != 3 && SeedNumber != 4) {
+			System.out.println("원하는 식물의 씨앗을 선택해봐요!" + "\n 다시 입력해주세요.");
+			SeedNumber = sc.nextInt();
+		}
+		switch (SeedNumber) {
+		case 1:
+			StarSeed sf = new StarSeed();
+			System.out.println("별 비료를 선택하셨군요!!");
+			Seed = sf.Seed;
+			SeedPrice = sf.SeedPrice();
+			break;
+		case 2:
+			AtSeed af = new AtSeed();
+			System.out.println("골뱅이 비료를 선택하셨군요!!");
+			Seed = af.Seed;
+			SeedPrice = af.SeedPrice();
+			break;
+		case 3:
+			ShopSeed s2f = new ShopSeed();
+			System.out.println("우물 비료를 선택하셨군요!!");
+			Seed = s2f.Seed;
+			SeedPrice = s2f.SeedPrice();
+			break;
+		case 4:
+			AddSeed a2f = new AddSeed();
+			System.out.println("더하기 비료를 선택하셨군요!!");
+			Seed = a2f.Seed;
+			SeedPrice = a2f.SeedPrice();
+			break;
+		}
+
+		d.leftmoney(SeedPrice);
+		d.defaultMenuprint();
+		d.endCondition1();
+		// 씨앗구현
 		Naming naming = new Naming();
 		naming.namePrint();
 		d.name = sc.next();
 		d.defaultMenuprint();
+		System.out.println(" ---------------------------------- ");
 
+		MiniGame m = new MiniGame();
+		m.GameChoose();
+		int GameNumber = sc.nextInt();
+		int bouns = 0;
+		String selectgame = " ";
+		while (GameNumber != 1 && GameNumber != 2) {
+			System.out.println("식물 성장을 위해 돈을 벌어봐요!!!!" + "\n 게임을 다시 선택해주세요!");
+			GameNumber = sc.nextInt();
+		}
+		switch (GameNumber) {
+		case 1:
+			flowername g1 = new flowername();
+			System.out.println("식물이름 맞추기 게임을 선택하셨군요!!");
+			selectgame = g1.selectgame;
+			flowername firstgame = new flowername();
+			firstgame.floriography();
+			firstgame.count = bouns;
+			System.out.println(bouns);
+
+			break;
+		case 2:
+			OXGame g2 = new OXGame();
+			System.out.println("OX퀴즈를 선택하셨군요!!");
+			selectgame = g2.selectgame;
+			break;
+		}
+		d.leftmoney(bouns);
+		d.defaultMenuprint();
+		d.endCondition1();
 	}
 }
 
@@ -114,10 +187,10 @@ class defaultMenu {
 	}
 
 	void endCondition1() {
-		if (money <= 0) {
-			System.out.println("돈을 다 써버려서 더이상 식물을 키울 수 없습니다!");
-			System.out.println("재 실행해주세요!");
-			System.exit(0);
+		if (money == 0) {
+			System.out.println("돈이 부족합니다!!");
+		} else if (money < 0) {
+			System.out.println("식물을 더 이상 키울 수가 없어요!! 미니게임을 진행하세요!!");
 		}
 	}
 
@@ -195,6 +268,7 @@ class StarFertilizer extends Fertilizer {
 	}
 
 	String Fertilizer = "*";
+
 };
 
 class AtFertilizer extends Fertilizer {
@@ -221,10 +295,181 @@ class AddFertilizer extends Fertilizer {
 	String Fertilizer = "+";
 };
 
+class Seed {
+	void SeedChoose() {
+		System.out.println();
+		System.out.println(
+				"## 씨 선택하기 ##" + "\n[1] *별 씨앗(W1000) [2] @골뱅이 씨앗(W2000)  [3] #우물 씨앗(W3000)  [4] +더하기 씨앗(W4000)");
+		System.out.println();
+		System.out.println("## 씨앗을 선택해주세요:) ##  (해당 씨앗의 숫자를 입력하세요.)");
+	}
+
+	int SeedPrice() {
+		return 0;
+	}
+
+	String Seed = " ";
+}
+
+class StarSeed extends Seed {
+	int SeedPrice() {
+		return 1000;
+	}
+
+	String Seed = "*";
+
+};
+
+class AtSeed extends Seed {
+	int SeedPrice() {
+		return 2000;
+	}
+
+	String Seed = "@";
+};
+
+class ShopSeed extends Seed {
+	int SeedPrice() {
+		return 3000;
+	}
+
+	String Seed = "#";
+};
+
+class AddSeed extends Seed {
+	int SeedPrice() {
+		return 4000;
+	}
+
+	String Seed = "+";
+};
+
 class Naming {
 	void namePrint() {
 		System.out.println();
 		System.out.println("## 이름 짓기 ##");
 		System.out.print("이름을 입력해주세요 : ");
 	}
+};
+
+class MiniGame {
+
+	void GameChoose() {
+		System.out.println();
+		System.out.println("## 미니게임 선택하기 ##" + "\n[1] 꽃말이름 맞추기!! [2] OX퀴즈");
+	}
+
+	public void flowername() {
+		// TODO Auto-generated method stub
+
+	}
+
+	String selectgame = " ";
+
+};
+
+class flowername extends MiniGame {
+
+	public int count;
+
+	void NameGame() {
+
+		System.out.println("준비가 되셨으면 Enter키를 누르세요");
+		Scanner scan = new Scanner(System.in);
+		String enter = " ";
+		enter = scan.nextLine();
+
+		System.out.println("3초 뒤에 시작합니다");
+		try {
+			for (int i = 3; i > 0; i--) {
+				Thread.sleep(1000);
+				System.out.println(i);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		// ----------------------------------------------
+		System.out.println("시작하겠습니다");
+		Scanner scan1 = new Scanner(System.in);
+		String enter1 = " ";
+		enter1 = scan1.nextLine();
+
+		System.out.println("3초 뒤에 시작합니다");
+
+		try {
+			for (int i = 3; i > 0; i--) {
+				Thread.sleep(1000);
+				System.out.println(i);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		floriography();
+	}
+
+	// ------------------------------------------------
+
+	void floriography() {
+
+		System.out.println("진실한  사랑, 겸손한 마음, 그대를 누구보다고 사랑합니다의 꽃말을 가진 꽃은 무엇일까요?");
+		Scanner scan1 = new Scanner(System.in);
+		String enter1 = " ";
+		enter1 = scan1.nextLine();
+		boolean b = enter1.contains("동백");
+		if (b == true) {
+			System.out.println("정답입니다!");
+			count++;
+		} else {
+			System.out.println("틀렸습니다. 정답은 " + '"' + "동백" + '"' + "입니다");
+		}
+		// =============================================================================
+		System.out.println("열정, 정열, 사랑을 뜻하는 꽃은?");
+		Scanner scan2 = new Scanner(System.in);
+		String enter2 = " ";
+		enter2 = scan1.nextLine();
+		boolean b1 = enter2.contains("장미");
+		if (b1 == true) {
+			System.out.println("정답입니다!");
+			count++;
+		} else {
+			System.out.println("틀렸습니다. 정답은 " + '"' + "장미" + '"' + "입니다");
+		}
+		//
+		System.out.println("짝사랑, 흠모, 헌신을 뜻하는 꽃은?");
+		Scanner scan3 = new Scanner(System.in);
+		String enter3 = " ";
+		enter3 = scan1.nextLine();
+		boolean b2 = enter3.contains("해바라기");
+		if (b2 == true) {
+			System.out.println("정답입니다!");
+			count++;
+		} else {
+			System.out.println("틀렸습니다. 정답은 " + '"' + "해바라기" + '"' + "입니다");
+		}
+		// -----------------------------------------------------------------------
+		System.out.println("스승의날에 주는 꽃은 무엇일까요?");
+		Scanner scan4 = new Scanner(System.in);
+		String enter4 = " ";
+		enter4 = scan4.nextLine();
+		boolean b3 = enter4.contains("카네이션");
+		if (b3 == true) {
+			System.out.println("정답입니다!");
+			count++;
+		} else {
+			System.out.println("틀렸습니다. 정답은 " + '"' + "카네이션" + '"' + "입니다");
+		}
+
+		System.out.println("맞힌 개수는 " + count + "개 입니다");
+		System.out.println("상금은 " + count * 1000);
+		count = count * 1000;
+	}
+};
+
+class OXGame extends MiniGame {
+
+	void OXgame() {
+		System.out.println("준비가 되셨으면 Enter키를 누르세요");
+	}
+
 };
