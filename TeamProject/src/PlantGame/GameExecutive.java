@@ -1,5 +1,7 @@
 package PlantGame;
 
+ipackage PlantGame;
+
 import java.util.Scanner;
 
 public class GameExecutive {
@@ -145,9 +147,12 @@ public class GameExecutive {
 
 			break;
 		case 2:
-			OXGame g2 = new OXGame();
-			System.out.println("OX퀴즈를 선택하셨군요!!");
+			Drawing g2 = new Drawing();
+			System.out.println("숫자 맞추기를 선택하셨군요!!");
 			selectgame = g2.selectgame;
+			Drawing secondgame = new Drawing();
+			secondgame.DrawingGame();
+
 			break;
 		}
 		d.leftmoney(bouns);
@@ -356,11 +361,15 @@ class MiniGame {
 
 	void GameChoose() {
 		System.out.println();
-		System.out.println("## 미니게임 선택하기 ##" + "\n[1] 꽃말이름 맞추기!! [2] OX퀴즈");
+		System.out.println("## 미니게임 선택하기 ##" + "\n[1] 꽃말이름 맞추기!! [2] 랜덤 숫자 맞추기!!");
 	}
 
 	public void flowername() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void DrawingGame() {
 
 	}
 
@@ -466,10 +475,64 @@ class flowername extends MiniGame {
 	}
 };
 
-class OXGame extends MiniGame {
+class Drawing extends MiniGame {
 
-	void OXgame() {
-		System.out.println("준비가 되셨으면 Enter키를 누르세요");
+	int Com[] = new int[3]; // 랜덤으로 나오는 수 3가지
+	int User[] = new int[3]; // 사용자가 맞추는 3가지 경우의 수
+	int num = 0;
+	int count = 0;
+	boolean loop = true;
+
+	int bingo = 0; // 정답수
+	int failure = 0; // 실패한 수
+
+	public void DrawingGame() {
+		for (int i = 0; i < Com.length; i++) {
+			Com[i] = (int) (Math.random() * 9) + 1;
+			for (int j = 0; j < i; j++) {
+				if (Com[j] == Com[i]) {
+					i--;
+					break;
+				}
+			}
+		}
+		// ----------------------------------------
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("1 ~ 3의 정수를 입력하세요!!");
+
+		loop = true;
+		while (loop) {
+			for (int i = 0; i < User.length; i++) {
+				num = sc.nextInt();
+				User[i] = num;
+				if (num < 0 || num > 4) {
+					System.out.println("1~3의 정수를 입력하세요");
+				}
+			}
+
+			for (int i = 0; i < Com.length; i++) {
+				for (int j = 0; j < User.length; j++) {
+					if (Com[i] == User[j] && i == j) {
+						bingo++;
+					} else if (Com[i] == User[j] && i != j) {
+						failure++;
+					}
+				}
+			}
+
+			System.out.println(bingo + "성공" + failure + "실패");
+			bingo = 0;
+			failure = 0;
+
+			if (bingo >= 3) {
+				loop = false;
+			}
+			count = count + 1;
+		}
+
+		System.out.println("횟수 : " + (count - 1));
+		System.out.println("미니게임 끝!!");
+		sc.close();
 	}
-
 };
