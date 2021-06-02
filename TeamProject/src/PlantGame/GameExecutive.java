@@ -268,6 +268,7 @@ public class GameExecutive {
 			break;
 		}
 		d.defaultMenuprint();
+
 		// Ãâ·Â
 		finalPrint perfect = new finalPrint();
 		perfect.finalPrintStart();
@@ -350,7 +351,7 @@ class Pot {
 			for (int j = 0; j <= i; j++) {
 				System.out.print(" ");
 			}
-			for (int k = 0; k < (5 - line) * 2 + (potsize + 2); k++) {
+			for (int k = 0; k < (5 - line) * 2 + (potsize + 4); k++) {
 				System.out.print(s);
 			}
 			System.out.println();
