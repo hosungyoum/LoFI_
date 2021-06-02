@@ -32,14 +32,14 @@ public class GameExecutive {
 			KorPot kp = new KorPot();
 			System.out.println("한국 화분을 선택하셨군요!!");
 			nation = kp.nation;
-			p.PotPrint(nation);
+			p.PotPrint(nation, 10);
 			potPrice = kp.potPrice();
 			break;
 		case 2:
 			EngPot ep = new EngPot();
 			System.out.println("미국 화분을 선택하셨군요!!");
 			nation = ep.nation;
-			p.PotPrint(nation);
+			p.PotPrint(nation, 10);
 			potPrice = ep.potPrice();
 			break;
 		}
@@ -138,6 +138,8 @@ public class GameExecutive {
 		// 물길러오기 게임
 		waterGame wg = new waterGame();
 		wg.waterGameStart();
+		System.out.println();
+		System.out.println("게임은 총 10회 진행 됩니다!" + "\n게임에 성공하면 +500ml 물이 주어집니다");
 		int[] com = new int[10];
 		int[] user = new int[10];
 		com = wg.comRandom(com);
@@ -164,6 +166,7 @@ public class GameExecutive {
 
 		// 잔돈 털이
 		change cm = new change();
+		System.out.println("남아 있는 돈이 없어서 실행 할 수 없습니다." + "\n바로 식물을 성장시킵니다!");
 		cm.changePrint(d.money);
 		int yesOrNo = sc.nextInt();
 		while (yesOrNo != 1 && yesOrNo != 2) {
@@ -272,8 +275,8 @@ public class GameExecutive {
 		Stem stem = new Stem();
 		int middle = stem.middle(d.size);
 		stem.Stemprint(middle, d.height);
-		p.PotPrint(nation);
-		System.out.println("------" + d.name + " 화분------");
+		p.PotPrint(nation, d.size);
+		p.potUnder(d.size, d.name);
 	}
 }
 
@@ -341,19 +344,29 @@ class Pot {
 
 	String nation = " ";
 
-	void PotPrint(String s) {
+	void PotPrint(String s, int potsize) {
 		int line = 1;
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print(" ");
 			}
-			for (int k = 0; k < (5 - line) * 2 + 10; k++) {
+			for (int k = 0; k < (5 - line) * 2 + (potsize + 2); k++) {
 				System.out.print(s);
 			}
 			System.out.println();
 			line += 1;
 		}
 
+	}
+
+	void potUnder(int size, String name) {
+		for (int i = 0; i < size; i++) {
+			System.out.print("-");
+		}
+		System.out.print(name);
+		for (int i = 0; i < size; i++) {
+			System.out.print("-");
+		}
 	}
 };
 
@@ -541,9 +554,9 @@ class flowernameGame {
 	void NameGameStart() {
 		System.out.println("지금부터 식물에 대한 애정도를 테스트 하기위해 꽃말 보고 맞추기게임을 실행하겠습니다!");
 		System.out.println("이 게임은 애정도를 바탕으로 식물의 크기가 결정됩니다! ");
-		System.out.println("3초 뒤에 시작합니다");
+		System.out.println("5초 뒤에 시작합니다");
 		try {
-			for (int i = 3; i > 0; i--) {
+			for (int i = 5; i > 0; i--) {
 				Thread.sleep(1000);
 				System.out.println(i);
 			}
@@ -601,9 +614,9 @@ class waterGame {
 	void waterGameStart() {
 		System.out.println("다음으로 물길러오기 게임을 진행하겠습니다!");
 		System.out.println("이 게임은 떠온 물의 ml에 따라 식물의 키가 결정됩니다! ");
-		System.out.println("3초 뒤에 시작합니다");
+		System.out.println("5초 뒤에 시작합니다");
 		try {
-			for (int i = 3; i > 0; i--) {
+			for (int i = 5; i > 0; i--) {
 				Thread.sleep(1000);
 				System.out.println(i);
 			}
@@ -629,6 +642,7 @@ class waterGame {
 	}
 
 	void waterPrint() {
+		System.out.println();
 		System.out.println("총 물을 " + water() + "ml 길러왔습니다.");
 		System.out.println("식물의 키가 " + watergrow() + "cm 자랍니다!");
 	}
