@@ -1,0 +1,88 @@
+package PlantGame;
+
+class triangleSeed extends Seed {
+	int SeedPrice() {
+		return 1000;
+	}
+
+	void SeedPrint(int size, String c) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - i - 1; j++) {
+				System.out.print(" ");
+			}
+			for (int k = 0; k < (i * 2 + 1); k++) {
+				System.out.print(c);
+			}
+			System.out.println();
+		}
+	}
+
+};
+
+class squareSeed extends Seed {
+	int SeedPrice() {
+		return 2000;
+	}
+
+	void SeedPrint(int size, String c) {
+		for (int i = 1; i <= size; i++) {
+			for (int k = 0; k < size / 2; k++) {
+				System.out.print(" ");
+			}
+			for (int j = 1; j <= size; j++) {
+				System.out.print(c);
+			}
+			System.out.println();
+		}
+	}
+};
+
+class diamondSeed extends Seed {
+	int SeedPrice() {
+		return 3000;
+	}
+
+	void SeedPrint(int size, String c) {
+		int m = 0;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < (size - m); j++) {
+				System.out.print(" ");
+			}
+			for (int k = 0; k < (m * 2) - 1; k++) {
+				System.out.print(c);
+			}
+			System.out.println();
+			m += 1;
+		}
+		int n = 0;
+		for (int I = 0; I < size; I++) {
+			for (int J = 0; J <= I; J++) {
+				System.out.print(" ");
+			}
+			for (int K = 0; K < (size - n) * 2 - 1; K++) {
+				System.out.print(c);
+			}
+			System.out.println();
+			n += 1;
+		}
+
+	}
+}
+
+public class Seed {
+
+	void SeedChoose() {
+		System.out.println();
+		System.out.println("## 씨앗 선택하기 ##" + "\n[1] 세모꽃 씨앗(W1000) [2] 네모꽃 씨앗(W2000)  [3] 다이아몬드꽃 씨앗(W3000)");
+		System.out.println();
+		System.out.println("씨앗을 선택해주세요:)    (해당 씨앗의 숫자를 입력하세요.)");
+	}
+
+	int SeedPrice() {
+		return 0;
+	}
+
+	void SeedPrint() {
+
+	}
+};
