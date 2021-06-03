@@ -1,0 +1,49 @@
+public class defaultMenu {
+	public int money = 10000, size = 0, height = 0;
+	public String name = "oo";
+
+	int money() {
+		return money;
+	}
+
+	int size() {
+		return size;
+	}
+
+	int height() {
+		return height;
+	}
+
+	String name() {
+		return name;
+	}
+
+	void defaultMenuprint() {
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.println(
+				"가진돈: " + money + "  " + name + "(이)의 크기: " + size() + "  " + name + "의 키: " + height() + "cm");
+		System.out.println("--------------------------------------------------------------------------");
+	}
+
+	int leftmoney(int p) {
+		this.money = money - p;
+		return money;
+	}
+
+	void endCondition1() {
+		if (money <= 0) {
+			System.out.println("돈을 다 써버려서 더이상 식물을 키울 수 없습니다!");
+			System.out.println("재 실행해주세요!");
+			System.exit(0);
+		}
+	}
+
+	void endCondition2() {
+		if (money < 0) {
+			System.out.println("돈을 다 써버려서 더이상 식물을 키울 수 없습니다!");
+			System.out.println("재 실행해주세요!");
+			System.exit(0);
+		}
+	}
+
+};
