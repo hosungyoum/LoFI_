@@ -1,4 +1,4 @@
-class flowernameGame {
+public class flowernameGame {
 	int countWin = 0;
 
 	void NameGameStart() {
