@@ -1,0 +1,61 @@
+package PlantGame;
+
+class KorPot extends Pot {
+	int potPrice() {
+		return 5000;
+	}
+
+	String nation = "W";
+};
+
+class EngPot extends Pot {
+	int exchange() {
+		return 1200;
+	}
+
+	int potPrice() {
+		return exchange() * 5;
+	}
+
+	String nation = "$";
+}
+
+public class Pot {
+	int potPrice() {
+		return 0;
+	}
+
+	void PotChoose() {
+		System.out.println();
+		System.out.println("## 화분 선택하기 ##" + "\n[1] 한국 화분(W5000) [2] 미국 화분($5 *단, 환율은 달러 당 1200원)");
+		System.out.println();
+		System.out.println("화분를 선택해주세요:)  (해당 화분의 숫자를 입력하세요.)");
+	}
+
+	String nation = " ";
+
+	void PotPrint(String s, int potsize) {
+		int line = 1;
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j <= i; j++) {
+				System.out.print(" ");
+			}
+			for (int k = 0; k < (5 - line) * 2 + (potsize + 4); k++) {
+				System.out.print(s);
+			}
+			System.out.println();
+			line += 1;
+		}
+
+	}
+
+	void potUnder(int size, String name) {
+		for (int i = 0; i < size; i++) {
+			System.out.print("-");
+		}
+		System.out.print(name);
+		for (int i = 0; i < size; i++) {
+			System.out.print("-");
+		}
+	}
+};
