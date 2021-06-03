@@ -1,0 +1,59 @@
+class flowernameGame {
+	int countWin = 0;
+
+	void NameGameStart() {
+		System.out.println("지금부터 식물에 대한 애정도를 테스트 하기위해 꽃말 보고 맞추기게임을 실행하겠습니다!");
+		System.out.println("이 게임은 애정도를 바탕으로 식물의 크기가 결정됩니다! ");
+		System.out.println("5초 뒤에 시작합니다");
+		try {
+			for (int i = 5; i > 0; i--) {
+				Thread.sleep(1000);
+				System.out.println(i);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("GAME START!");
+	}
+
+	void floriographyQ(int i) {
+		switch (i) {
+		case 0:
+			System.out.println(i + 1 + ". 진실한  사랑, 겸손한 마음, 그대를 누구보다고 사랑합니다의 꽃말을 가진 꽃은 무엇일까요?");
+			break;
+		case 1:
+			System.out.println(i + 1 + ". 열정, 정열, 사랑을 뜻하며 보통 프로포즈용으로 주는 꽃은?");
+			break;
+		case 2:
+			System.out.println(i + 1 + ". 짝사랑, 흠모, 헌신을 뜻하는 꽃은?    hint:sun");
+			break;
+		case 3:
+			System.out.println(i + 1 + ". 모정, 사랑, 부인의 애정을 뜻하며 어버이날과 스승의 날에 주는 꽃은?");
+			break;
+		case 4:
+			System.out.println(i + 1 + ". 네덜란드의 상징이며 사랑의 고백,매혹,영원한 애정,경솔을 뜻하는 꽃은?");
+			break;
+		}
+	}
+
+	int correctAnswer(String[] array) {
+		String[] answer = { "동백", "장미", "해바라기", "카네이션", "튤립" };
+		for (int i = 0; i < 5; i++) {
+			boolean b1 = array[i].contains(answer[i]);
+			if (b1 == true) {
+				countWin++;
+			}
+		}
+		return countWin;
+	}
+
+	int flowerSize() {
+		return countWin * 2;
+	}
+
+	void correctAnswerPrint(int n) {
+		System.out.println();
+		System.out.println("맞힌 개수는 총" + n + "개 입니다");
+	}
+
+};
