@@ -1,0 +1,50 @@
+package PlantGame;
+
+class StarFertilizer extends Fertilizer {
+	int FertilizerPrice() {
+		return 1000;
+	}
+
+	String Fertilizer = "*";
+};
+
+class AtFertilizer extends Fertilizer {
+	int FertilizerPrice() {
+		return 2000;
+	}
+
+	String Fertilizer = "@";
+};
+
+class ShopFertilizer extends Fertilizer {
+	int FertilizerPrice() {
+		return 3000;
+	}
+
+	String Fertilizer = "#";
+};
+
+class AddFertilizer extends Fertilizer {
+	int FertilizerPrice() {
+		return 4000;
+	}
+
+	String Fertilizer = "+";
+}
+
+public class Fertilizer {
+
+	void FertilizerChoose() {
+		System.out.println();
+		System.out.println(
+				"## 비료 선택하기 ##" + "\n[1] *별 비료(W1000) [2] @골뱅이 비료(W2000)  [3] #우물 비료(W3000)  [4] +더하기 비료(W4000)");
+		System.out.println();
+		System.out.println("비료를 선택해주세요:)   (해당 비료의 숫자를 입력하세요.)");
+	}
+
+	int FertilizerPrice() {
+		return 0;
+	}
+
+	String Fertilizer = " ";
+};
