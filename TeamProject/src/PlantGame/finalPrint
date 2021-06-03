@@ -1,0 +1,34 @@
+package PlantGame;
+
+public class finalPrint {
+
+	void finalPrintStart() {
+		System.out.println("식물이 곧 다 자라납니다!");
+		System.out.println("3초만 기다려 주세요 :)");
+		try {
+			for (int i = 3; i > 0; i--) {
+				Thread.sleep(1000);
+				System.out.println(i);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	void pefectSeedPrint(int SeedNumber, int size, String nation) {
+		switch (SeedNumber) {
+		case 1:
+			triangleSeed ts = new triangleSeed();
+			ts.SeedPrint(size, nation);
+			break;
+		case 2:
+			squareSeed sqs = new squareSeed();
+			sqs.SeedPrint(size, nation);
+			break;
+		case 3:
+			diamondSeed ds = new diamondSeed();
+			ds.SeedPrint(size, nation);
+			break;
+		}
+	}
+};
