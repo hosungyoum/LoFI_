@@ -1,0 +1,40 @@
+package PlantGame;
+
+public class change {
+	String Sizeup = "식물 크기 키우기";
+	String Heightup = "식물 키 키우기";
+
+	void changePrint(int money) {
+		System.out.println();
+		System.out.println("현재 당신의 돈이 " + money + "원 남아있습니다!");
+		System.out.println("남아있는 돈으로 잔돈털이를 진행하시겠습니까?");
+		System.out.println("[1] 네 [2] 아니요");
+		System.out.println("(해당하는 숫자를 입력하세요.)");
+	}
+
+	void changePrint2() {
+		System.out.println();
+		System.out.println("남아있는 돈으로 잔돈털이를 진행합니다");
+		System.out.println("[1]" + Sizeup + "\t" + "[2]" + Heightup);
+		System.out.println("(해당하는 숫자를 입력하세요.)");
+	}
+
+	void changePrint3(int money, String str) {
+		System.out.println("돈이" + money + "원 남았습니다");
+		System.out.println("남은 돈으로 " + str + "를 진행 하시겠습니까?");
+		System.out.println("[1] 네 [2] 아니요");
+		System.out.println("(해당하는 숫자를 입력하세요.)");
+	}
+
+	void howMuchPrint(String str) {
+		System.out.println();
+		System.out.println(str + "를 선택하셨습니다! ");
+		System.out.println("얼마만큼 키우시겠습니까? " + "\t" + str + " +1 : 200 원");
+		System.out.println("(키우기 원하는 크기를 입력하세요.)");
+	}
+
+	int moneyToup(int money, int size) {
+		return money - (200 * size);
+	}
+
+};
