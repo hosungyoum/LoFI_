@@ -1,0 +1,42 @@
+package PlantGame;
+
+public class waterGame {
+	int bingo = 0;
+
+	void waterGameStart() {
+		System.out.println("다음으로 물길러오기 게임을 진행하겠습니다!");
+		System.out.println("이 게임은 떠온 물의 ml에 따라 식물의 키가 결정됩니다! ");
+		System.out.println("5초 뒤에 시작합니다");
+		try {
+			for (int i = 5; i > 0; i--) {
+				Thread.sleep(1000);
+				System.out.println(i);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("GAME START!");
+	}
+
+	int[] comRandom(int[] com) {
+		for (int i = 0; i < com.length; i++) {
+			com[i] = (int) (Math.random() * 3) + 1;
+		}
+		return com;
+	}
+
+	int water() {
+		return bingo * 500;
+	}
+
+	int watergrow() {
+		return bingo * 2;
+	}
+
+	void waterPrint() {
+		System.out.println();
+		System.out.println("총 물을 " + water() + "ml 길러왔습니다.");
+		System.out.println("식물의 키가 " + watergrow() + "cm 자랍니다!");
+	}
+
+};
